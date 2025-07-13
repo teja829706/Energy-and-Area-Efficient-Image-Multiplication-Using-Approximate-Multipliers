@@ -1,0 +1,28 @@
+clc;        % Clear command window
+clear;      % Clear workspace
+close all;  % Close all figure windows
+
+% Load pre-existing images
+img1 = imread('cameraman.tif');  % First image
+disp(img1);
+img2 = imread('rice.png');       % Second image
+disp(img2);
+% Convert to grayscale (if not already)
+img1 = im2double(img1);
+img2 = im2double(img2);
+
+% Resize images to the same dimensions
+img2 = imresize(img2, size(img1));
+
+% Perform element-wise multiplication
+multiplied_img = img1 .* img2;
+
+% Display images
+figure;
+
+subplot(1,1,1), imshow(multiplied_img), title('Multiplied Image');
+
+% Save the multiplied image
+imwrite(multiplied_img, 'multiplied_output.jpg');
+
+disp('Image multiplication completed and saved as multiplied_output.jpg');
